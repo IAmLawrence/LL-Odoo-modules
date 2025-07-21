@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_ll_export_user_access_wizard_form" model="ir.ui.view">
+        <field name="name">view.ll.export.user.access.wizard.form</field>
+        <field name="model">ll.export.user.access</field>
+        <field name="arch" type="xml">
+            <form string="Export User Access Report" version="7.0">
+                <group>
+                    <div>
+                        <field name="file_data" filename="file_name" readonly="1"/>
+                        📁 Click the file above to download after clicking export button.
+                        <field name="file_name" readonly="1" invisible="1"/>
+                    </div>
+                </group>
+                <footer>
+                    <button name="export_user_access_excel"
+                            string="Export"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_export_user_access_wizard" model="ir.actions.act_window">
+        <field name="name">Export User Access Report</field>
+        <field name="res_model">ll.export.user.access</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="export_user_access_level_menu" name="User Access Tools" parent="base.menu_custom" sequence="99"/>
+    <menuitem id="export_user_access_action_menu" name="Export User Access" parent="export_user_access_level_menu" action="action_export_user_access_wizard"/>
+</odoo>
