@@ -18,4 +18,11 @@ Useful for auditing user roles and permissions.
     ],
     'installable': True,
     'application': False,
+
+    'images': [
+        'static/description/banner.png',
+        'static/description/icon.png',
+    ],
 }
+
+
