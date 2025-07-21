@@ -1,6 +1,6 @@
 {
     'name': 'User Access Export',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.1',
     'category': 'Tools',
     'summary': 'Export Users and Their Application Group Access',
     'description': """
