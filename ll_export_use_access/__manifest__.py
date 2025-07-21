@@ -1,6 +1,6 @@
 {
     'name': 'User Access Export',
-    'version': '18.0.1.0.3',
+    'version': '18.0.1.0.4',
     'category': 'Tools',
     'summary': 'Export Users and Their Application Group Access',
     'description': """
@@ -21,6 +21,10 @@ Useful for auditing user roles and permissions.
 
     'images': [
         'static/description/banner.gif',
+        'static/description/screenshot1.png',
+        'static/description/screenshot2.png',
+        'static/description/screenshot3.png',
+        'static/description/screenshot4.png',
         # 'static/description/icon.png',
     ],
 }
