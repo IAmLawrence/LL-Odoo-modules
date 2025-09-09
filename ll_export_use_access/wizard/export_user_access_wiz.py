@@ -26,16 +26,16 @@ class LLExportUserAccess(models.TransientModel):
         user_app_group = {}
         for user in Users:
             mapping = {}
-            for group in user.groups_id:
+            direct_groups = user.groups_id - user.groups_id.mapped('implied_ids')
+            for group in direct_groups:
                 parts = group.full_name.split('/')
                 if len(parts) >= 2:
                     app = parts[0].strip()
                     grp = parts[1].strip()
-                    mapping[app] = grp
+                    mapping.setdefault(app, []).append(grp)
             user_app_group[user.login] = mapping
 
         sorted_user_items = sorted(user_app_group.items(), key=lambda item: item[0].lower())
-
         apps = sorted(app_groups.keys())
 
         output = io.BytesIO()
@@ -44,13 +44,15 @@ class LLExportUserAccess(models.TransientModel):
 
         ws1 = workbook.add_worksheet("User Groups")
         ws1.write(0, 0, 'User', bold)
+
         for col, app in enumerate(apps, start=1):
             ws1.write(0, col, app, bold)
 
         for row, (user, mapping) in enumerate(sorted_user_items, start=1):
             ws1.write(row, 0, user)
             for col, app in enumerate(apps, start=1):
-                ws1.write(row, col, mapping.get(app, ''))
+                groups = mapping.get(app, [])
+                ws1.write(row, col, ", ".join(groups))
 
         workbook.close()
         output.seek(0)
@@ -65,3 +67,5 @@ class LLExportUserAccess(models.TransientModel):
             'view_mode': 'form',
             'target': 'new',
         }
+
+

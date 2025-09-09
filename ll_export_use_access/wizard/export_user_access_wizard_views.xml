@@ -9,7 +9,9 @@
                 <group>
                     <div>
                         <field name="file_data" filename="file_name" readonly="1"/>
-                        📁 Click the file above to download after clicking export button.
+                        <div class="o_form_label text-success">
+                            Click the file above to download after clicking export button.
+                        </div>
                         <field name="file_name" readonly="1" invisible="1"/>
                     </div>
                 </group>
